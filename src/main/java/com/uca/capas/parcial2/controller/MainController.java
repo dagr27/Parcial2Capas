@@ -1,5 +1,6 @@
 package com.uca.capas.parcial2.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -26,6 +27,7 @@ public class MainController {
 	private List<libro> libroList = null;
 	private List<categoria> categoriaList = null;
 	
+	/*Cargadores de vista*/
 	@RequestMapping("/index")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
@@ -40,6 +42,34 @@ public class MainController {
 		mav.setViewName("category");
 		return mav;
 	}
+	@RequestMapping("/book")
+	public ModelAndView showBook() {
+		ModelAndView mav = new ModelAndView();
+		libro book = new libro();
+		try {
+			categoriaList = categoriaS.findAll() ;
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		mav.addObject("categories", categoriaList);
+		mav.addObject("libro", book);
+		mav.setViewName("book");
+		return mav;
+	}
+	@RequestMapping("/allBooks")
+	public ModelAndView showBooks() {
+		ModelAndView mav = new ModelAndView();
+		try {
+			libroList = libroS.findAll();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		mav.addObject("libros", libroList);
+		mav.setViewName("allBooks");
+		return mav;
+	}
+	
+	/*Cargadores de datos a BD*/
 	@RequestMapping("/saveCat")
 	public ModelAndView saveCategory(@Valid @ModelAttribute categoria cat, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
@@ -50,11 +80,26 @@ public class MainController {
 				e.printStackTrace();
 			}
 			mav.addObject("categories",categoriaList);
-			mav.setViewName("/category");
+			mav.setViewName("category");
 		}else {
 			categoriaS.insert(cat);
 			mav.addObject("success","¡Categoria ingresada con exito!");
-			mav.setViewName("/index");
+			mav.setViewName("index");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/saveBook")
+	public ModelAndView saveBook(@Valid @ModelAttribute libro book, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		if(result.hasErrors()) {
+			mav.setViewName("book");
+		}else {
+			Date dateToday = new Date();
+			book.setF_ingreso(dateToday);
+			libroS.insert(book);
+			mav.addObject("success","¡Libro insertado con exito!");
+			mav.setViewName("index");
 		}
 		return mav;
 	}

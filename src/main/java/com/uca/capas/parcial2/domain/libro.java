@@ -115,6 +115,14 @@ public class libro {
 		this.s_isbn = s_isbn;
 	}
 	
+	public String getEstadoDelegate() {
+		if(this.b_estado == null)
+			return "";
+		else {
+			return b_estado == true ? "Activo":"Inactivo";
+		}
+	}
+	
 	
 	
 	

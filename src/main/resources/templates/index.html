@@ -7,10 +7,10 @@
 </head>
 <body class="d-flex flex-column justify-content-center align-items-center w-100 " style="height:100vh;">
 	<h1>Selecciona la Opcion que desees realizar</h1>
-	<div class="w-100 d-flex justify-content-center w-25 shadow p-3 mb-5 bg-white rounded text-center">
+	<div class="w-25 d-flex justify-content-between w-25 shadow p-3 mb-5 bg-white rounded text-center">
 		<a href="/category"><button class="btn btn-info form-control mr-2">Ingresar Categoria</button></a>
-		<a><button class="btn btn-info form-control mr-2">Ingresar Libro</button></a>
-		<a><button class="btn btn-warning form-control mr-2">Ver Libros</button></a>
+		<a href="/book"><button class="btn btn-info form-control mr-2">Ingresar Libro</button></a>
+		<a href="/allBooks"><button class="btn btn-warning form-control text-dark mr-2">Ver Libros</button></a>
 	</div>
 	<h2 th:text="${success}"></h2>
 </body>

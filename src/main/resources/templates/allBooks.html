@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Listado Contribuyentes</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body class="d-flex flex-column w-100 justify-content-center align-items-center" style="height: 100vh;">
+
+	<h2>Todos Los Libros</h2>
+	<table class="table table-bordered w-50">
+		<thead>
+			<tr>
+				<th scope="col">Titulo</th>
+				<th scope="col">Autor</th>
+				<th scope="col">Categoria</th>
+				<th scope="col">Fecha Ingreso</th>
+				<th scope="col">Estado</th>
+				<th scope="col">ISBN</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="row : ${libros}">
+				<td th:text="${row.s_titulo}"></td>
+				<td th:text="${row.s_autor}"></td>
+				<td th:text="${row.categoria.c_categoria}"></td>
+				<td th:text="${#dates.format(row.f_ingreso, 'dd/MM/yyyy hh:mm')}"></td>
+				<td th:text="${row.b_estado}"></td>
+				<td th:text="${row.s_isbn}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+	
+	<a class="text-decoration-none text-white" href="/index"><button type="button" class="btn btn-secondary btn-sm">Regresar</button></a>
+	
+
+</body>
+</html>
