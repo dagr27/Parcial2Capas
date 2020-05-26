@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 
@@ -22,6 +23,7 @@ public class categoria {
 	private Integer c_categoria;
 	
 	@Column(name="s_categoria")
+	@NotEmpty(message="No puede estar vacio")
 	@Size(max=50, message="No debe de tener mas de 50 caracteres")
 	private String s_categoria;
 	
